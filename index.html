@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image   background-color: #aaa; */
+.fakeimg {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="header">
+  <h2>Scientifica Analytica</h2>
+  <h6>Akhilesh Singaraju</h6>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>Investigating the the use of LiDAR sensors impact the safety, performance, and reliability of autonomous vehicle systems compared to relying solely on cameras and radar</h2>
+      <h5>May 17, 2024</h5>
+      <h5>With autonomous vehicles predicted to be the future, it is important to analyse the implications of such technologies</h5>
+      <img class="fakeimg" src="https://imgs.search.brave.com/KyCypqtWKjX9n4qw9JSbwlMvMYBgqKmsL785HRxiYFc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi83Lzc1L1dh/eW1vX0phZ3Vhcl9J/LVBhY2VfaW5fU2Fu/X0ZyYW5jaXNjb18y/MDIzX2RsbHUuanBn/LzY0MHB4LVdheW1v/X0phZ3Vhcl9JLVBh/Y2VfaW5fU2FuX0Zy/YW5jaXNjb18yMDIz/X2RsbHUuanBn"/>
+      <p>Light Detection and Ranging (LiDAR) technology has emerged as a critical sensor for autonomous vehicle perception and navigation systems. By using laser pulses to precisely measure distances and generate high-resolution 3D point cloud maps of the surrounding environment, LiDAR allows self-driving cars to detect obstacles, identify features like lane markings, and localize themselves with high accuracy. However, the widespread deployment of LiDAR on consumer vehicles faces several challenges, including high sensor costs, complex data processing requirements, and potential safety concerns from overreliance on a single perception modality.<a href="myHtmlFile.html"><p>Read More</p></a>
+</p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Posts</h3>
+      <div class="fakeimg"><a>Investigating the the use of LiDAR sensors impact the safety, performance, and reliability of autonomous vehicle systems compared to relying solely on cameras and radar</a></div><br>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+        <p><a href="https://github.com/Akhilesh-Singaraju"><i class="fa fa-github" style="font-size:36px;color:black;"></i></a></p>
+    </div>
+  </div>
+</div>
+
+</body>
+<div class="footer">
+  <h2>&copy Akhilesh Singaraju 2024</h2>
+</div>
+
+</html>
+
