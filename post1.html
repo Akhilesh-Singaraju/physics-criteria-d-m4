@@ -1,399 +1,515 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: #f1f1f1;
+    }
+
+    .header {
+      padding: 30px;
+      font-size: 40px;
+      text-align: center;
+      background: white;
+    }
+
+    .leftcolumn {
+      float: left;
+      width: 75%;
+    }
+
+    .rightcolumn {
+      float: left;
+      width: 25%;
+      padding-left: 20px;
+    }
+
+    .fakeimg {
+      width: 100%;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .footer {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+      background: #ddd;
+      margin-top: 20px;
+    }
+
+    @media screen and (max-width: 800px) {
+
+      .leftcolumn,
+      .rightcolumn {
+        width: 100%;
+        padding: 0;
+      }
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #474E5D;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .container {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -17px;
+      background-color: white;
+      border: 4px solid #FF9F55;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    .left::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      right: 30px;
+      border: medium solid white;
+      border-width: 10px 0 10px 10px;
+      border-color: transparent transparent transparent #F1F1F1;
+    }
+
+    .right::before {
+      content: " ";
+      height: 0;
+      position: absolute;
+      top: 22px;
+      width: 0;
+      z-index: 1;
+      left: 30px;
+      border: medium solid white;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #F1F1F1 transparent transparent;
+    }
+
+    .right::after {
+      left: -16px;
+    }
+
+    .content {
+      padding: 20px 30px;
+      background-color: #F1F1F1;
+      position: relative;
+      border-radius: 6px;
+    }
+
+    @media screen and (max-width: 600px) {
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .container {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .container::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+
+      .left::after,
+      .right::after {
+        left: 15px;
+      }
+
+      .right {
+        left: 0%;
+      }
+    }
+    .red-button {
+  background-color: #ff0000; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
 }
 
-/* Add a gray background color with some padding */
-body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
+.red-button:hover {
+  background-color: #d73838; 
+}
+.green-button {
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px 20px; 
+  border: none;
+  border-radius: 5px; 
+  cursor: pointer; 
 }
 
-/* Header/Blog Title */
-.header {
-  padding: 30px;
-  font-size: 40px;
-  text-align: center;
-  background: white;
+.green-button:hover {
+  background-color: #388e3c; 
 }
 
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.leftcolumn {   
-  float: left;
-  width: 75%;
-}
-
-/* Right column */
-.rightcolumn {
-  float: left;
-  width: 25%;
-  padding-left: 20px;
-}
-
-/* Fake image   background-color: #aaa; */
-.fakeimg {
-  width: 100%;
-  padding: 20px;
-}
-
-/* Add a card effect for articles */
-.card {
-   background-color: white;
-   padding: 20px;
-   margin-top: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Footer */
-.footer {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  background: #ddd;
-  margin-top: 20px;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
-    width: 100%;
-    padding: 0;
-  }
-}
-.timeline-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.timeline {
-  position: relative;
-  padding: 0;
-  list-style: none;
-}
-
-.timeline-item {
-  width: 180px;
-  margin: 10px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #eee;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.timeline-item:nth-child(even) {
-  background-color: #f5f5f5;
-}
-
-.timeline-item h2 {
-  margin: 0 0 5px 0;
-  font-size: 18px;
-  text-align: center;
-}
-
-.timeline-item p {
-  font-size: 14px;
-  line-height: 1.5;
-  display: none; /* Descriptions initially hidden */
-}
-
-.circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #333;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.timeline-item.active .circle {
-  background-color: #007bff;
-}
-
-.timeline-item.active .timeline-item-content {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.timeline-item.active p {
-  display: block;
-}
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
 
-<div class="header">
-  <h2>Scientifica Analytica</h2>
-  <h6>Akhilesh Singaraju</h6>
-</div>
+  <div class="header">
+    <h2>Scientifica Analytica</h2>
+    <h6>Akhilesh Singaraju</h6>
+  </div>
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-      <h2>Investigating the the use of LiDAR sensors impact the safety, performance, and reliability of autonomous vehicle systems compared to relying solely on cameras and radar</h2>
-      <h5>May 17, 2024</h5>
-      <h5>With autonomous vehicles predicted to be the future, it is important to analyse the implications of such technologies</h5>
-      <img class="fakeimg" src="https://imgs.search.brave.com/KyCypqtWKjX9n4qw9JSbwlMvMYBgqKmsL785HRxiYFc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi83Lzc1L1dh/eW1vX0phZ3Vhcl9J/LVBhY2VfaW5fU2Fu/X0ZyYW5jaXNjb18y/MDIzX2RsbHUuanBn/LzY0MHB4LVdheW1v/X0phZ3Vhcl9JLVBh/Y2VfaW5fU2FuX0Zy/YW5jaXNjb18yMDIz/X2RsbHUuanBn"/>
-      <div>
-        <h1 class="unnumbered" id="abstract">Abstract</h1>
-        <p>Light Detection and Ranging (LiDAR) technology has emerged as a
-        critical sensoral component in the production of autonomous vehicle
-        perception and navigation systems. LiDAR works by utilizing pulses of
-        electromagnetic waves to gather vital data on the distance from the
-        sensoral component and nearby objects. This research aims to
-        comprehensively evaluate the implications of LiDAR technology for
-        autonomous 4-wheeler driving. By analyzing the technical capabilities
-        and limitations of various LiDAR systems through conducting an effective
-        meta-analysis, this study analyses the potential implications of this
-        technology and autonomous vehicles in general. Additionally, the
-        computational demands, software algorithms, and infrastructure
-        requirements for processing large LiDAR datasets in real-time are
-        investigated. This work also examines the safety implications of LiDAR
-        and Autonomous Vehicles, including potential failures, sensor redundancy
-        needs, and verification and validation processes. The long-term
-        scalability and cost factors that may impact mainstream LiDAR adoption
-        are also taken into account. Overall, this multifaceted research aims to
-        provide a comprehensive perspective on the current state and future
-        prospects of LiDAR technology for enabling safe and reliable autonomous
-        driving capabilities.</p>
-        <h1 id="introduction">Introduction</h1>
-        <p>Autonomous Vehicles(which is frequently refered to as "AV" or "AVs"
-        further throughout in this article) have been subject to multi-faceted
-        research fronts, with a sharp rise in the intensity of research on the
-        topic in recent years. AVs promise to revolutionize personalized
-        transport through safer, cleaner, more convenient mode of
-        transportation. However, a essential component of AVs needs to be
-        created and tested in real-world scenarios before production, which is
-        the distance sensor system. This is crucial in AVs as they allow the
-        computer to gauge the distance from surrounding traffic, pedestrians,
-        and understand lane zoning of roads, etc. A potential solution, which
-        will be covered in this article, is LiDAR, also known as Light Detection
-        and ranging. LiDAR uses electromagnetic waves to guage distances with
-        exceptional accuracy and in multiple weather conditions<span
-        class="citation"
-        data-cites="synopsysWhatLiDAR mrlcgLiDARCars"></span>.</p>
-        <p>However, LiDAR is not the only solution to this problem. Some of
-        these are:</p>
-        <ul>
-        <li><p>Advanced Camera Systems. These systems use cameras and computer
-        vision algorithms for object recognition. However, these suffer in poor
-        lighting conditions<span class="citation"
-        data-cites="dorlecoBestSensors"></span>.</p></li>
-        <li><p>Radar. Radar is a similar system that gives the direction of
-        movement and location of a object. However, it does provide as much
-        accuracy as LiDAR<span class="citation"
-        data-cites="dorlecoBestSensors"></span>.</p></li>
-        <li><p>Hybrid. Hybrid systems use a mix of LiDAR, Cameras, and Radar to
-        create a more accurate picture and provide more details basing of the
-        use cases of each. However, such systems would prove to be quite
-        expensive.</p></li>
-        </ul>
-        <h2 id="connection-to-soi">Connection to SOI</h2>
-        <p>LiDAR Based Autonomous vehicles are connected to the statement of
-        inquiry "Wave theory demonstrates the interaction of energy with the
-        environment through modelling a law of the natural world", as LiDAR
-        works on the principles of wave-theory. LiDAR based Autonomous Vehicles
-        use wave theory, as it utilizes the reflection of light waves to measure
-        distance of an object from the sensor.</p>
-        <h1 id="solution">Solution</h1>
-        <p>LiDAR(short for Light Detection and Ranging) is a remote sensing
-        method that utilizes electromagnetic pulses to calculate the
-        ranges(variable distance from the device). Usually, this is paired with
-        other data to create a accurate 3D model of the environment. A LiDAR
-        module consists of 3 components</p>
-        <ol>
-        <li><p>Laser</p></li>
-        <li><p>Scanner</p></li>
-        <li><p>GPS Module</p></li>
-        </ol>
-        <p>There are several variants of Lidar, the two most popular being
-        Topographic and Bathymetric.Topographic LiDAR consists of light with
-        wavelengths near the infrared spectrum, while Bathymetric uses green
-        light, which has the property to penetrate water columns.<span
-        class="citation" data-cites="noaaWhatLidar"></span></p>
-        <h2 id="how-does-lidar-work">How does LiDAR work?</h2>
-        <p><img src="images/lidar-glossary.jpeg" style="width:100.0%"
-        alt="image" /> <span id="fig:1.1" label="fig:1.1"></span></p>
-        <p>LiDAR works by firing a pulse of light outward and timing the time
-        taken for the light wave to be reflected back to the sensor. From this,
-        we can find out the distance of objects from the sensor by using the
-        formula <span class="math inline">v = d/t</span> (as we know
-        the velocity of the wave and the time taken, we can calculate distance
-        from the re-arrangement <span
-        class="math inline"><em>d</em> = <em>v</em><em>t</em></span>)<span
-        class="citation" data-cites="synopsysWhatLiDAR"></span>. By doing this
-        100,000s per second, points can be placed on a 3D map with respect to
-        the sensor<span class="citation"
-        data-cites="mrlcgLiDARCars"></span>.</p>
-        <h2 id="the-integration-to-autonomous-personal-vehicles">The integration
-        to Autonomous Personal Vehicles</h2>
-        <p><img
-        src="images/optimus-rides-autonomous-self-driving-vehicles-are-equipped-news-photo-1619210210.jpeg"
-        style="width:100.0%" alt="image" /> <span id="fig:1.1"
-        label="fig:1.1"></span></p>
-        <p>On Autonomous vehicles, a LiDAR system(LiDAR laser, receiver, and GPS
-        module) is placed on the car(usually on the top) to provide a 360<span
-        class="math inline"><sup><em>o</em></sup></span> view of the
-        surroundings. The LiDAR module fires 100,000s of laser bursts per
-        second<span class="citation" data-cites="rgbsiWhatLiDAR"></span>. Figure
-        1.2 shows how this data looks in 3D space through the rendering of these
-        points. This allows the car create a digital, mathematical environment
-        in which algorithms can be written to find obstacles<span
-        class="citation" data-cites="mrlcgLiDARCars"></span>.</p>
-        <h1 id="effectiveness">Effectiveness</h1>
-        <p>LiDAR is an effective sensor with almost no limitations other than
-        its cost. However, LiDAR cannot work in heavy rain as the water droplets
-        results in large diffraction of light, which makes it harder for the
-        system to trace back the light point to the reflected object.
-        Furthermore, the computational requirements needed for the processing of
-        the data is quite immense. However, overall, LiDAR is an effective
-        technology that works well<span class="citation"
-        data-cites="synopsysWhatLiDAR"></span>.</p>
-        <h1 id="implications">Implications</h1>
-        <h2 id="social">Social</h2>
-        <h2 id="positive">Positive</h2>
-        <p>LiDAR based Autonomous Vehicles improve safety of commuters on the
-        roads, which is done by the level of attentiveness and accuracy a
-        computerized system is expected to have. With this system, crashes will
-        become less frequent, as studies state that crashes would decrease from
-        a lower estimate of 33% up to 90%. Taking into account that 1.35 million
-        people died worldwide in 2016 from motor vehicular incidents, AVs would
-        save a significant portion of people<span class="citation"
-        data-cites="compactEconomicSocial"></span>.</p>
-        <p>Accessibility will also be increased, with elderly, physically or
-        mentally challenged persons, or any other people that are unable to get
-        qualification for driving will be able to use the roads safely to
-        commute<span class="citation"
-        data-cites="compactEconomicSocial"></span>. This can connect them to
-        services and family members that live further away and require commute
-        by vehicle<a href="#fn1" class="footnote-ref" id="fnref1"
-        role="doc-noteref"><sup>1</sup></a>.</p>
-        <h3 id="negative">Negative</h3>
-        <p>However, Autonomous Vehicles have the potential to cause damage to
-        the lives of the populace as well. For instance, they remove jobs from a
-        significant portion of the population(which are automobile drivers). In
-        the US, 2.9% of the population is engaged in these jobs, amounting to
-        more than 4 million in total<span class="citation"
-        data-cites="compactEconomicSocial"></span>. As a result, the widespread
-        introduction of AVs would result in mass job displacement in the sector,
-        resulting in a surge in unemployment rates.</p>
-        <h2 id="economic">Economic</h2>
-        <h3 id="positive-1">Positive</h3>
-        <p>LiDAR based autonomous vehicles decrease travel time significantly,
-        as autonomous vehicles use smarter computer-based algorithms to manage
-        traffic, while also following all rules set to minimize traffic at
-        hotspots such as junctions. This is a prominent issue, as a study shows
-        that Americans spend an average of 97 hours a year or  2.5 work weeks
-        per year in traffic congestion. By reducing travel times, employees at
-        companies will be more productive by a factor of effectively adding 2.5
-        week’s worth of work per year on existing employee performance. This is
-        show through data as well, as the cost of these congestions amounted to
-        around $87 billion in 2018(as calculated by Forbes)<span
-        class="citation" data-cites="compactEconomicSocial"></span>.</p>
-        <p>In the future, a fully autonomous truck fleet an posses significant
-        economic benefits. This is caused by the fact that autonomous vehicles
-        can decrease human labour, making it cheaper for employers while also
-        not requiring mandatory breaks required for human truckers. AVs can also
-        optimize routes to better save fuel, decreasing the cost per mile of
-        cargo transport. To back this up with data, in a study researchers
-        estimate that the Swedish Logistics sector can benefit with upto
-        $1,215,292,000 USD in savings between 2020 and 2030 through the use of
-        AVs<span class="citation" data-cites="divaportal"></span>.</p>
-        <h3 id="negatives">Negatives</h3>
-        <p>However, Autonomous Vehicles have the potential to economic damage as
-        well. For instance, they remove jobs from a significant portion of the
-        population(which are automobile drivers). In the US, 2.9% of the
-        population is engaged in these jobs, amounting to more than 4 million in
-        total. They earn a salary of approximately $45,000 dollars a year,
-        resulting in a total of $180 billion per year in lost income<span
-        class="citation" data-cites="compactEconomicSocial"></span>. This can
-        lead to significant cuts in spending of these now unemployed workers,
-        resulting in hits to several different industries in terms of profit.
-        Furthermore, AVs also reduce the number of crashes that occur
-        significantly, which results in a large impact on the automobile repair
-        industry. The automobile repair industry in the US accounts for over $71
-        billion dollars in revenue. As AVs are expected to reduce the crash
-        rates by between 33-90%, this can lead to losses in multi-billion dollar
-        figures to the sector<span class="citation"
-        data-cites="compactEconomicSocial"></span>.</p>
-        <p>LiDAR is also quite expensive, with a system needed for autonomous
-        vehicles costing tens of thousands of dollars. For example,
-        Velodyne-64’s LiDAR system costs around $80,000 USD, making it as
-        expensive as a lot of Luxury cars<span class="citation"
-        data-cites="neuvitionLiDARPriceCars"></span>. This logically drives the
-        cost of AVs higher, significantly decreasing the potential market and
-        cost of produces<a href="#fn2" class="footnote-ref" id="fnref2"
-        role="doc-noteref"><sup>2</sup></a>.</p>
-        <h2 id="ethical">Ethical</h2>
-        <p>Autonomous Vehicles also have ethical implications in several
-        scenarios on the road<span class="citation"
-        data-cites="compactEconomicSocial"></span>. For instance, the AV may be
-        hurtling towards a child and its too late to stop. However, there is
-        traffic on the other lane. So, the scenario is for the computer to
-        choose whether to kill the child or risk getting the owner getting
-        injured in traffic. Such ethical dilemmas pose significant challenges to
-        computerized vehicles and need to be regulated to ensure safety on
-        roads.</p>
-        <h1 id="conclusion">Conclusion</h1>
-        <p>In conclusion, LiDAR proves itself a important part of any future
-        autonomous vehicles, as it provides sensoral data on the distance of
-        objects from the sensor. However there are some implications regarding
-        Social, Ethical, and Economic factors.</p>
-        <p>LiDAR is expensive and computationally heavy, but I believe that it
-        will prove itself to be crucial to any future production autonomous
-        vehicles due to its accuracy, distance, and weather-resistance.
-        Furthermore, work is being done on LiDAR sensors to decrease the cost of
-        LiDAR to between 500-1000 USD. Combining all of this, I think that LiDAR
-        based Autonomous Vehicles is the future of transport.</p>
-        <center><button onclick="interactiveBtn()">Interactive Resources</button></center>
-        <center>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+        <h2>Investigating the the use of LiDAR sensors impact the safety, performance, and reliability of autonomous
+          vehicle systems compared to relying solely on cameras and radar</h2>
+        <h5>May 17, 2024</h5>
+        <h5>With autonomous vehicles predicted to be the future, it is important to analyse the implications of such
+          technologies</h5>
+        <img class="fakeimg"
+          src="https://imgs.search.brave.com/KyCypqtWKjX9n4qw9JSbwlMvMYBgqKmsL785HRxiYFc/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi83Lzc1L1dh/eW1vX0phZ3Vhcl9J/LVBhY2VfaW5fU2Fu/X0ZyYW5jaXNjb18y/MDIzX2RsbHUuanBn/LzY0MHB4LVdheW1v/X0phZ3Vhcl9JLVBh/Y2VfaW5fU2FuX0Zy/YW5jaXNjb18yMDIz/X2RsbHUuanBn" />
+        <div>
+          <center>
+            <p>Read Aloud</p>
+            <audio controls>
+              <source src="Abstract Light Detection and Ranging (LiDAR) technology has emerged as a critical sensoral component in the production of autonomous vehicle perception and navigation systems. LiDAR works by utilizing pulses of electromagnetic waves to gath.mp3">
+            </audio>
+          </center>
+          <h1 class="unnumbered" id="abstract">Abstract</h1>
+          <p>Light Detection and Ranging (LiDAR) technology has emerged as a
+            critical sensoral component in the production of autonomous vehicle
+            perception and navigation systems. LiDAR works by utilizing pulses of
+            electromagnetic waves to gather vital data on the distance from the
+            sensoral component and nearby objects. This research aims to
+            comprehensively evaluate the implications of LiDAR technology for
+            autonomous 4-wheeler driving. By analyzing the technical capabilities
+            and limitations of various LiDAR systems through conducting an effective
+            meta-analysis, this study analyses the potential implications of this
+            technology and autonomous vehicles in general. Additionally, the
+            computational demands, software algorithms, and infrastructure
+            requirements for processing large LiDAR datasets in real-time are
+            investigated. This work also examines the safety implications of LiDAR
+            and Autonomous Vehicles, including potential failures, sensor redundancy
+            needs, and verification and validation processes. The long-term
+            scalability and cost factors that may impact mainstream LiDAR adoption
+            are also taken into account. Overall, this multifaceted research aims to
+            provide a comprehensive perspective on the current state and future
+            prospects of LiDAR technology for enabling safe and reliable autonomous
+            driving capabilities.</p>
+          <h1 id="introduction">Introduction</h1>
+          <p>Autonomous Vehicles(which is frequently refered to as "AV" or "AVs"
+            further throughout in this article) have been subject to multi-faceted
+            research fronts, with a sharp rise in the intensity of research on the
+            topic in recent years. AVs promise to revolutionize personalized
+            transport through safer, cleaner, more convenient mode of
+            transportation. However, a essential component of AVs needs to be
+            created and tested in real-world scenarios before production, which is
+            the distance sensor system. This is crucial in AVs as they allow the
+            computer to gauge the distance from surrounding traffic, pedestrians,
+            and understand lane zoning of roads, etc. A potential solution, which
+            will be covered in this article, is LiDAR, also known as Light Detection
+            and ranging. LiDAR uses electromagnetic waves to guage distances with
+            exceptional accuracy and in multiple weather conditions<span class="citation"
+              data-cites="synopsysWhatLiDAR mrlcgLiDARCars"></span>.</p>
+          <p>However, LiDAR is not the only solution to this problem. Some of
+            these are:</p>
+          <ul>
+            <li>
+              <p>Advanced Camera Systems. These systems use cameras and computer
+                vision algorithms for object recognition. However, these suffer in poor
+                lighting conditions<span class="citation" data-cites="dorlecoBestSensors"></span>.</p>
+            </li>
+            <li>
+              <p>Radar. Radar is a similar system that gives the direction of
+                movement and location of a object. However, it does provide as much
+                accuracy as LiDAR<span class="citation" data-cites="dorlecoBestSensors"></span>.</p>
+            </li>
+            <li>
+              <p>Hybrid. Hybrid systems use a mix of LiDAR, Cameras, and Radar to
+                create a more accurate picture and provide more details basing of the
+                use cases of each. However, such systems would prove to be quite
+                expensive.</p>
+            </li>
+          </ul>
+          <h2 id="connection-to-soi">Connection to SOI</h2>
+          <p>LiDAR Based Autonomous vehicles are connected to the statement of
+            inquiry "Wave theory demonstrates the interaction of energy with the
+            environment through modelling a law of the natural world", as LiDAR
+            works on the principles of wave-theory. LiDAR based Autonomous Vehicles
+            use wave theory, as it utilizes the reflection of light waves to measure
+            distance of an object from the sensor.</p>
+          <h1 id="solution">Solution</h1>
+          <p>LiDAR(short for Light Detection and Ranging) is a remote sensing
+            method that utilizes electromagnetic pulses to calculate the
+            ranges(variable distance from the device). Usually, this is paired with
+            other data to create a accurate 3D model of the environment. A LiDAR
+            module consists of 3 components</p>
+          <ol>
+            <li>
+              <p>Laser</p>
+            </li>
+            <li>
+              <p>Scanner</p>
+            </li>
+            <li>
+              <p>GPS Module</p>
+            </li>
+          </ol>
+          <p>There are several variants of Lidar, the two most popular being
+            Topographic and Bathymetric.Topographic LiDAR consists of light with
+            wavelengths near the infrared spectrum, while Bathymetric uses green
+            light, which has the property to penetrate water columns.<span class="citation"
+              data-cites="noaaWhatLidar"></span></p>
+          <h2 id="how-does-lidar-work">How does LiDAR work?</h2>
+          <p><img src="images/lidar-glossary.jpeg" style="width:100.0%" alt="image" /> <span id="fig:1.1"
+              label="fig:1.1"></span></p>
+          <p>LiDAR works by firing a pulse of light outward and timing the time
+            taken for the light wave to be reflected back to the sensor. From this,
+            we can find out the distance of objects from the sensor by using the
+            formula <span class="math inline">v = d/t</span> (as we know
+            the velocity of the wave and the time taken, we can calculate distance
+            from the re-arrangement <span class="math inline"><em>d</em> = <em>v</em><em>t</em></span>)<span
+              class="citation" data-cites="synopsysWhatLiDAR"></span>. By doing this
+            100,000s per second, points can be placed on a 3D map with respect to
+            the sensor<span class="citation" data-cites="mrlcgLiDARCars"></span>.</p>
+          <h2 id="the-integration-to-autonomous-personal-vehicles">The integration
+            to Autonomous Personal Vehicles</h2>
+          <p><img src="images/optimus-rides-autonomous-self-driving-vehicles-are-equipped-news-photo-1619210210.jpeg"
+              style="width:100.0%" alt="image" /> <span id="fig:1.1" label="fig:1.1"></span></p>
+          <p>On Autonomous vehicles, a LiDAR system(LiDAR laser, receiver, and GPS
+            module) is placed on the car(usually on the top) to provide a 360<span
+              class="math inline"><sup><em>o</em></sup></span> view of the
+            surroundings. The LiDAR module fires 100,000s of laser bursts per
+            second<span class="citation" data-cites="rgbsiWhatLiDAR"></span>. Figure
+            1.2 shows how this data looks in 3D space through the rendering of these
+            points. This allows the car create a digital, mathematical environment
+            in which algorithms can be written to find obstacles<span class="citation"
+              data-cites="mrlcgLiDARCars"></span>.</p>
+          <h1 id="effectiveness">Effectiveness</h1>
+          <p>LiDAR is an effective sensor with almost no limitations other than
+            its cost. However, LiDAR cannot work in heavy rain as the water droplets
+            results in large diffraction of light, which makes it harder for the
+            system to trace back the light point to the reflected object.
+            Furthermore, the computational requirements needed for the processing of
+            the data is quite immense. However, overall, LiDAR is an effective
+            technology that works well<span class="citation" data-cites="synopsysWhatLiDAR"></span>.</p>
+          <h1 id="implications">Implications</h1>
+          <h2 id="social">Social</h2>
+          <h2 id="positive">Positive</h2>
+          <p>LiDAR based Autonomous Vehicles improve safety of commuters on the
+            roads, which is done by the level of attentiveness and accuracy a
+            computerized system is expected to have. With this system, crashes will
+            become less frequent, as studies state that crashes would decrease from
+            a lower estimate of 33% up to 90%. Taking into account that 1.35 million
+            people died worldwide in 2016 from motor vehicular incidents, AVs would
+            save a significant portion of people<span class="citation" data-cites="compactEconomicSocial"></span>.</p>
+          <p>Accessibility will also be increased, with elderly, physically or
+            mentally challenged persons, or any other people that are unable to get
+            qualification for driving will be able to use the roads safely to
+            commute<span class="citation" data-cites="compactEconomicSocial"></span>. This can connect them to
+            services and family members that live further away and require commute
+            by vehicle<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+          <h3 id="negative">Negative</h3>
+          <p>However, Autonomous Vehicles have the potential to cause damage to
+            the lives of the populace as well. For instance, they remove jobs from a
+            significant portion of the population(which are automobile drivers). In
+            the US, 2.9% of the population is engaged in these jobs, amounting to
+            more than 4 million in total<span class="citation" data-cites="compactEconomicSocial"></span>. As a result,
+            the widespread
+            introduction of AVs would result in mass job displacement in the sector,
+            resulting in a surge in unemployment rates.</p>
+          <h2 id="economic">Economic</h2>
+          <h3 id="positive-1">Positive</h3>
+          <p>LiDAR based autonomous vehicles decrease travel time significantly,
+            as autonomous vehicles use smarter computer-based algorithms to manage
+            traffic, while also following all rules set to minimize traffic at
+            hotspots such as junctions. This is a prominent issue, as a study shows
+            that Americans spend an average of 97 hours a year or  2.5 work weeks
+            per year in traffic congestion. By reducing travel times, employees at
+            companies will be more productive by a factor of effectively adding 2.5
+            week’s worth of work per year on existing employee performance. This is
+            show through data as well, as the cost of these congestions amounted to
+            around $87 billion in 2018(as calculated by Forbes)<span class="citation"
+              data-cites="compactEconomicSocial"></span>.</p>
+          <p>In the future, a fully autonomous truck fleet an posses significant
+            economic benefits. This is caused by the fact that autonomous vehicles
+            can decrease human labour, making it cheaper for employers while also
+            not requiring mandatory breaks required for human truckers. AVs can also
+            optimize routes to better save fuel, decreasing the cost per mile of
+            cargo transport. To back this up with data, in a study researchers
+            estimate that the Swedish Logistics sector can benefit with upto
+            $1,215,292,000 USD in savings between 2020 and 2030 through the use of
+            AVs<span class="citation" data-cites="divaportal"></span>.</p>
+          <h3 id="negatives">Negatives</h3>
+          <p>However, Autonomous Vehicles have the potential to economic damage as
+            well. For instance, they remove jobs from a significant portion of the
+            population(which are automobile drivers). In the US, 2.9% of the
+            population is engaged in these jobs, amounting to more than 4 million in
+            total. They earn a salary of approximately $45,000 dollars a year,
+            resulting in a total of $180 billion per year in lost income<span class="citation"
+              data-cites="compactEconomicSocial"></span>. This can
+            lead to significant cuts in spending of these now unemployed workers,
+            resulting in hits to several different industries in terms of profit.
+            Furthermore, AVs also reduce the number of crashes that occur
+            significantly, which results in a large impact on the automobile repair
+            industry. The automobile repair industry in the US accounts for over $71
+            billion dollars in revenue. As AVs are expected to reduce the crash
+            rates by between 33-90%, this can lead to losses in multi-billion dollar
+            figures to the sector<span class="citation" data-cites="compactEconomicSocial"></span>.</p>
+          <p>LiDAR is also quite expensive, with a system needed for autonomous
+            vehicles costing tens of thousands of dollars. For example,
+            Velodyne-64’s LiDAR system costs around $80,000 USD, making it as
+            expensive as a lot of Luxury cars<span class="citation" data-cites="neuvitionLiDARPriceCars"></span>. This
+            logically drives the
+            cost of AVs higher, significantly decreasing the potential market and
+            cost of produces<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+          <h2 id="ethical">Ethical</h2>
+          <p>Autonomous Vehicles also have ethical implications in several
+            scenarios on the road<span class="citation" data-cites="compactEconomicSocial"></span>. For instance, the AV
+            may be
+            hurtling towards a child and its too late to stop. However, there is
+            traffic on the other lane. So, the scenario is for the computer to
+            choose whether to kill the child or risk getting the owner getting
+            injured in traffic. Such ethical dilemmas pose significant challenges to
+            computerized vehicles and need to be regulated to ensure safety on
+            roads.</p>
+          <h1 id="conclusion">Conclusion</h1>
+          <p>In conclusion, LiDAR proves itself a important part of any future
+            autonomous vehicles, as it provides sensoral data on the distance of
+            objects from the sensor. However there are some implications regarding
+            Social, Ethical, and Economic factors.</p>
+          <p>LiDAR is expensive and computationally heavy, but I believe that it
+            will prove itself to be crucial to any future production autonomous
+            vehicles due to its accuracy, distance, and weather-resistance.
+            Furthermore, work is being done on LiDAR sensors to decrease the cost of
+            LiDAR to between 500-1000 USD. Combining all of this, I think that LiDAR
+            based Autonomous Vehicles is the future of transport.</p>
+            <center><a href="https://raw.githubusercontent.com/Akhilesh-Singaraju/physics-criteria-d-m4/main/Physics_Criteria_D-DRAFT.pdf"><button class="red-button">Download Detailed PDF Report</button></a></center>
+            <br>
+          <center><button onclick="interactiveBtn()" class="green-button" id="interBtn">Interactive Resources(SHOW)</button></center>
           <div id="interactive" style="display: none;">
             <br>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/JC94Y063x58?si=oZZI_5bobNY0ak72" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <h3 style="text-align: center;">Video</h3>
+            <center><iframe width="560" height="315" src="https://www.youtube.com/embed/JC94Y063x58?si=oZZI_5bobNY0ak72"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></center>
             <br>
-            <div class="timeline-container">
-              <ul class="timeline">
-                <li class="timeline-item" style="display: block;">
-                  <div class="timeline-item-content">
-                    <h2>1917</h2>
-                    <p class="hidden">Early research on using LiDAR for autonomous vehicles begins.</p>
-                  </div>
-                </li>
-                </ul>
+            <h3 style="text-align: center;">Timeline of LiDAR</h3>
+            <div class="timeline">
+              <div class="container left">
+                <div class="content">
+                  <h2>1963</h2>
+                  <p>Myron G. H. "Herb" Ligda and Dick Honey of SRI build the SRI Mark I lidar for atmospheric studies,
+                    detecting cloud, smog, and haze layers in the lower atmosphere</p>
+                </div>
+              </div>
+              <div class="container right">
+                <div class="content">
+                  <h2>1964</h2>
+                  <p>Richard Schotland measures water vapor using differential absorption lidar (DIAL)</p>
+                </div>
+              </div>
+              <div class="container left">
+                <div class="content">
+                  <h2>1984</h2>
+                  <p>Optech's LARSEN 500, the first operational lidar bathymeter, creates the first
+                    airborne-lidar-derived hydrographic chart, of Cambridge Bay in the Canadian Arctic</p>
+                </div>
+              </div>
+              <div class="container right">
+                <div class="content">
+                  <h2>1985</h2>
+                  <p>A NASA Wallops team led by Bill Krabill pioneers the use of GPS in positioning a flying aircraft,
+                    paving the way for airborne elevation mapping using lidar.</p>
+                </div>
+              </div>
+              <div class="container left">
+                <div class="content">
+                  <h2>2000s</h2>
+                  <p> LiDAR technology gains the ability to measure angles and velocity, producing detailed 3D maps,
+                    offering radar-like abilities at a higher resolution, leading to increased adoption in the
+                    automotive industry</p>
+                </div>
+              </div>
+              <div class="container right">
+                <div class="content">
+                  <h2>2023</h2>
+                  <p>LiDAR technology sees a turning point with more OEMs announcing models equipped with LiDAR, such as
+                    Volvo, SAIC, Toyota, Lexus, Audi, Mercedes, BMW, and Volkswagen, indicating a significant shift
+                    towards widespread adoption in the automotive sector</p>
+                </div>
+              </div>
             </div>
           </div>
-        </center>
         </div>
-        <section id="footnotes" class="footnotes footnotes-end-of-document"
-        role="doc-endnotes">
-        <hr />
-        <ol>
-        <li id="fn1"><p>It is also important to note that this may increase
-        miles travels by upto 14%, which may result in more congestion on the
-        roads<span class="citation" data-cites="compactEconomicSocial"></li>
-        <li id="fn2"><p>However, it is important to note that there is work
-        being done to decrease the cost of LiDAR sensors to 500-1000 USD</li>
-        </ol>
+        <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+          <hr />
+          <ol>
+            <li id="fn1">
+              <p>It is also important to note that this may increase
+                miles travels by upto 14%, which may result in more congestion on the
+                roads<span class="citation" data-cites="compactEconomicSocial">
+            </li>
+            <li id="fn2">
+              <p>However, it is important to note that there is work
+                being done to decrease the cost of LiDAR sensors to 500-1000 USD
+            </li>
+          </ol>
         </section>
       </div>
     </div>
@@ -403,35 +519,17 @@ body {
 <div class="footer">
   <h2>&copy Akhilesh Singaraju 2024</h2>
 </div>
+
 </html>
 <script>
-  const timelineItems = document.querySelectorAll(".timeline-item");
-
-timelineItems.forEach(item => {
-  item.addEventListener("click", () => {
-    item.classList.toggle("active");
-    const content = item.querySelector("p");
-    if (item.classList.contains("active")) {
-      content.style.display = "block";
-    } else {
-      content.style.display = "none";
-    }
-  });
-});
-
-
-
-  function interactiveBtn(){
+  function interactiveBtn() {
     x = document.getElementById("interactive");
     if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+      x.style.display = "block";
+      document.getElementById("interBtn").innerHTML = "Interactive Resources(HIDE)";
+    } else {
+      x.style.display = "none";
+      document.getElementById("interBtn").innerHTML = "Interactive Resources(SHOW)";
+    }
   }
 </script>
-
-<!-- </span><a
-href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p>
-<a
-        href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p> -->
